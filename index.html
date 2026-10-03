@@ -1,12 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spriteloom: Pixel-Art Sprites You Can Remix</title>
+  <meta name="description" content="Free pixel-art sprite generator for game developers. Every sprite is a tiny program with knobs: recolor, reshape, change palette, export crisp PNGs and spritesheets. Plus curated packs for RPGs, platformers and shooters.">
+  <meta property="og:title" content="Spriteloom: Pixel-Art Sprites You Can Remix">
+  <meta property="og:description" content="Every sprite is a tiny program with knobs. Recolor, reshape, export PNGs and spritesheets for your game.">
+  <meta property="og:image" content="assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Silkscreen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-    <h3>my first gihub </h3>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur itaque magni dolor eos corrupti eum illum deleniti error possimus consequuntur deserunt ducimus quae, placeat quisquam nesciunt velit, hic dolorum cum?</p>
+  <nav class="nav">
+    <div class="wrap">
+      <a class="logo" href="#"><canvas id="logo" width="16" height="16" aria-hidden="true"></canvas><span data-brand>Spriteloom</span></a>
+      <div class="nav-links">
+        <a href="#make">Generator</a>
+        <a href="#packs">Packs</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <a class="btn primary small" href="#pricing">Get all packs</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <canvas id="mosaic" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="eyebrow">Game assets, generated</div>
+      <h1>Pixel-art sprites<br>you can remix.</h1>
+      <p class="lead">Every sprite is a tiny program with knobs. Pick a color, a shape and a retro palette, then export a crisp PNG or a whole spritesheet. Free to use in your game.</p>
+      <div class="ctas">
+        <a class="btn primary" href="#make">Open the generator</a>
+        <a class="btn" href="#packs">Browse packs</a>
+      </div>
+      <div class="stats">
+        <div><b id="stat-gens">12</b><span>generators</span></div>
+        <div><b>&infin;</b><span>variations</span></div>
+        <div><b id="stat-sprites">900+</b><span>sprites in packs</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="make">
+      <div class="wrap">
+        <div class="eyebrow">Generator</div>
+        <h2>Make a sprite</h2>
+        <p class="muted">Pick a generator, turn the knobs, click a variation. Everything runs in your browser.</p>
+        <div class="studio">
+          <div class="panel gen-list" id="gen-list" role="group" aria-label="Generators"></div>
+          <div class="stage">
+            <div class="preview" id="preview"><canvas id="big" width="16" height="16" role="img" aria-label="Sprite preview"></canvas></div>
+            <div class="vars" id="vars" role="group" aria-label="Variations"></div>
+          </div>
+          <div class="panel knobs">
+            <div id="gen-knobs" class="knobs"></div>
+            <div class="divider"></div>
+            <div class="knob">
+              <label for="outline">Outline</label>
+              <select id="outline"><option value="dark">Tinted dark</option><option value="black">Black</option><option value="none">None</option></select>
+            </div>
+            <div class="knob">
+              <label for="palette">Palette</label>
+              <select id="palette"><option value="none">Full color</option><option value="pico8">PICO-8</option><option value="sweetie16">Sweetie 16</option><option value="gameboy">Game Boy</option></select>
+            </div>
+            <div class="knob">
+              <label for="seed">Seed</label>
+              <div class="seed-row"><input type="text" id="seed" spellcheck="false" autocomplete="off"><button class="btn small" id="reroll" title="Random seed">Roll</button></div>
+            </div>
+            <div class="divider"></div>
+            <div class="actions">
+              <select id="export-scale" aria-label="Export size"><option value="1">1x</option><option value="4">4x</option><option value="8" selected>8x</option></select>
+              <button class="btn small primary" id="dl-png">Download PNG</button>
+              <button class="btn small" id="dl-sheet">Sheet (24)</button>
+              <button class="btn small" id="copy-link">Copy link</button>
+              <button class="btn small" id="bg-toggle">Light bg</button>
+            </div>
+            <p class="note">Free sprites can be used in commercial games with a credit: "Sprites by <span data-brand>Spriteloom</span>".</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="eyebrow">How it works</div>
+        <h2>Programs, not pictures</h2>
+        <div class="steps">
+          <div class="panel step"><b>01</b><h3>Pick a generator</h3><p class="muted">Creatures, ships, potions, weapons, gems, keys, chests, shields, trees, rocks, mushrooms and seamless tiles.</p></div>
+          <div class="panel step"><b>02</b><h3>Turn the knobs</h3><p class="muted">Color, shape, size, outline and retro palettes. The same seed and knobs always give the same sprite.</p></div>
+          <div class="panel step"><b>03</b><h3>Drop it in your game</h3><p class="muted">PNG at 1x, 4x or 8x, or a spritesheet. Works in Godot, Unity, GameMaker, Phaser and anything that loads PNGs.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="packs">
+      <div class="wrap">
+        <div class="eyebrow">Packs</div>
+        <h2>Curated, game-ready packs</h2>
+        <p class="muted">Hand-picked sets with matching style, individual PNGs at 1x and 4x, spritesheets with JSON atlases, and a no-credit-needed commercial license.</p>
+        <div class="packs" id="pack-grid"></div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="wrap">
+        <div class="eyebrow">Pricing</div>
+        <h2>Simple pricing</h2>
+        <div class="tiers">
+          <div class="panel tier">
+            <h3>Free</h3>
+            <div class="price">$0</div>
+            <p class="muted">The full generator, forever.</p>
+            <ul>
+              <li>All 12 generators and every knob</li>
+              <li>PNG export up to 8x</li>
+              <li>24-sprite spritesheets</li>
+              <li>Commercial use with credit</li>
+            </ul>
+            <a class="btn" href="#make">Start making</a>
+          </div>
+          <div class="panel tier">
+            <h3>Single pack</h3>
+            <div class="price">$<span data-price="pack">9</span><small> one-time</small></div>
+            <p class="muted">One themed pack of 180 to 370 sprites.</p>
+            <ul>
+              <li>Every sprite at 1x and 4x</li>
+              <li>Spritesheets + JSON atlas</li>
+              <li>No credit required</li>
+              <li>Free updates to that pack</li>
+            </ul>
+            <a class="btn" href="#packs">Choose a pack</a>
+          </div>
+          <div class="panel tier featured">
+            <span class="tag">Best value</span>
+            <h3>All packs, forever</h3>
+            <div class="price">$<span data-price="allPacks">29</span><small> one-time</small></div>
+            <p class="muted">Everything now and every pack we release later.</p>
+            <ul>
+              <li><span id="all-count">900+</span> sprites today, more every month</li>
+              <li>Every future pack included</li>
+              <li>No credit required</li>
+              <li>Vote on the next pack</li>
+            </ul>
+            <a class="btn primary" data-buy="all-packs" href="#">Get all packs</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap">
+        <div class="eyebrow">FAQ</div>
+        <h2>Questions</h2>
+        <div class="faq">
+          <details><summary>Can I use the sprites in a commercial game?</summary><p>Yes. Free sprites from the generator need a small credit ("Sprites by Spriteloom"). Sprites from paid packs need no credit at all. You can't resell the sprites themselves as an asset pack.</p></details>
+          <details><summary>Which engines does this work with?</summary><p>Anything that loads PNG: Godot, Unity, GameMaker, Unreal (Paper2D), Phaser, PixiJS, Love2D, Pygame, RPG Maker and more. Packs also include JSON atlases in the TexturePacker format.</p></details>
+          <details><summary>How do I keep the pixels sharp?</summary><p>Turn off texture filtering. In Godot set Default Texture Filter to Nearest. In Unity set Filter Mode to Point and Compression to None.</p></details>
+          <details><summary>Why buy a pack if the generator is free?</summary><p>Packs save you hours: hundreds of hand-picked sprites with a consistent style, sorted into folders, exported at two sizes, with spritesheets and atlases ready to import, and no credit needed.</p></details>
+          <details><summary>Can I request a sprite type?</summary><p>Yes. All-packs owners vote on the next pack, and new generators ship every month.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div>&copy; <span id="year"></span> <span data-brand>Spriteloom</span>. Pixel art, procedurally.</div>
+      <div id="social"></div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="assets/app.js"></script>
 </body>
 </html>
